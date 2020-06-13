@@ -5,6 +5,7 @@ import com.redesocial.ppads.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -73,5 +74,69 @@ public class PessoaService {
             return true;
         }
         return false;
+    }
+
+    public List<Pessoa> findSeguindo(Integer id) {
+        List<Integer> listaSeguindo = pessoaRepository.findById(id).get().getSeguindo();
+        List<Pessoa> pessoaSeguindo = new ArrayList<>();
+        for (int i = 0; i < listaSeguindo.size(); i++) {
+            pessoaSeguindo.add(pessoaRepository.findById(listaSeguindo.get(i)).get());
+        }
+        return pessoaSeguindo;
+    }
+
+    public List<Pessoa> findSeguidores(Integer id) {
+        List<Integer> listaSeguidores = pessoaRepository.findById(id).get().getSeguidores();
+        List<Pessoa> pessoaSeguidores = new ArrayList<>();
+        for (int i = 0; i < listaSeguidores.size(); i++) {
+            pessoaSeguidores.add(pessoaRepository.findById(listaSeguidores.get(i)).get());
+        }
+        return pessoaSeguidores;
+    }
+
+    public boolean verificaFollow(Integer id, Integer idASeguir) {
+        return pessoaRepository.findById(id).get().getSeguindo().contains(idASeguir);
+    }
+
+    public List<Pessoa> followPessoa(Integer id, Integer idSeguir) {
+        List<Pessoa> lista = new ArrayList<>();
+        Pessoa seguidor = pessoaRepository.findById(id).get();
+        Pessoa seguindo = pessoaRepository.findById(idSeguir).get();
+
+        if(!(seguidor.getSeguindo().contains(idSeguir))) {
+            seguidor.getSeguindo().add(idSeguir);
+            pessoaRepository.save(seguidor);
+            lista.add(seguidor);
+            seguindo.getSeguidores().add(id);
+            pessoaRepository.save(seguindo);
+            lista.add(seguindo);
+        }
+
+        return lista;
+    }
+
+    public List<Pessoa> undoFollowPessoa(Integer id, Integer idDeixarDeSeguir) {
+        List<Pessoa> lista = new ArrayList<>();
+
+        Pessoa seguidor = pessoaRepository.findById(id).get();
+        Pessoa seguindo = pessoaRepository.findById(idDeixarDeSeguir).get();
+
+        if(seguidor.getSeguindo().contains(idDeixarDeSeguir)) {
+            if (!(seguidor.getSeguindo().isEmpty())){
+                seguidor.getSeguindo().remove(idDeixarDeSeguir);
+                pessoaRepository.save(seguidor);
+
+                lista.add(seguidor);
+            }
+
+            if (!(seguindo.getSeguidores().isEmpty())){
+                seguindo.getSeguidores().remove(id);
+                pessoaRepository.save(seguindo);
+
+                lista.add(seguindo);
+            }
+        }
+
+        return lista;
     }
 }

@@ -52,4 +52,29 @@ public class PessoaController {
         return pessoaService.delete(id);
     }
 
+    @GetMapping("seguindo/{id}")
+    public List<Pessoa> seguindo(@PathVariable Integer id) {
+        return pessoaService.findSeguindo(id);
+    }
+
+    @GetMapping("seguidores/{id}")
+    public List<Pessoa> seguidores(@PathVariable Integer id) {
+        return pessoaService.findSeguidores(id);
+    }
+
+    @GetMapping("verificaFollow/{id}/{idASeguir}")
+    public boolean verificaFollow(@PathVariable Integer id, @PathVariable Integer idASeguir){
+        return pessoaService.verificaFollow(id, idASeguir);
+    }
+
+    @GetMapping("follow/{id}/{idSeguir}")
+    public List<Pessoa> follow(@PathVariable Integer id, @PathVariable Integer idSeguir) {
+        return pessoaService.followPessoa(id, idSeguir);
+    }
+
+    @GetMapping("unfollow/{id}/{idDeixarDeSeguir}")
+    public List<Pessoa> unfollow(@PathVariable Integer id, @PathVariable Integer idDeixarDeSeguir) {
+        return pessoaService.undoFollowPessoa(id, idDeixarDeSeguir);
+    }
+
 }
