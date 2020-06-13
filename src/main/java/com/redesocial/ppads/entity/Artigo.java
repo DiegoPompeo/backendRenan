@@ -21,4 +21,6 @@ public class Artigo {
     private Integer id;
 
     private Publicacao publicacao;
+
+    private String emailAutor;
 }
