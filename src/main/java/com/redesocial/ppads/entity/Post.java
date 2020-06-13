@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -18,9 +19,14 @@ public class Post {
     @GenericGenerator(name = "increment", strategy = "increment")
     private Integer id;
 
-    private Publicacao publicacao;
+    private String txt;
 
     private String emailAutor;
 
     private Integer curtidas;
+
+    @ElementCollection
+    @CollectionTable(name="curtiram", joinColumns=@JoinColumn(name="curtiram_id"))
+    @Column(name="id_curtiram")
+    private List<Integer> membrosCurtiram;
 }

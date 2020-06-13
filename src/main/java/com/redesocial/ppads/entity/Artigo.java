@@ -1,5 +1,6 @@
 package com.redesocial.ppads.entity;
 
+import com.redesocial.ppads.model.Publicacao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,16 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-public class Curtida {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Artigo {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private Integer id;
 
-    private Integer idPostCurtido;
-
-    private Integer idUsuarioCurtiu;
+    private Publicacao publicacao;
 }

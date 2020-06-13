@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -28,4 +29,17 @@ public class Pessoa {
     private String interesses;
 
     private Trabalho trabalho;
+
+    @ElementCollection
+    @CollectionTable(name="segue", joinColumns=@JoinColumn(name="seguindo_id"))
+    @Column(name="id_seguindo")
+    private List<Integer> seguindo;
+
+    @ElementCollection
+    @CollectionTable(name="seguidor", joinColumns=@JoinColumn(name="seguidores_id"))
+    @Column(name="id_seguidores")
+    private List<Integer> seguidores;
+
+    @ElementCollection
+    private List<Integer> postsCurtidos;
 }
