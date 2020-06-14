@@ -42,6 +42,11 @@ public class PostController {
         return postService.delete(idPost);
     }
 
+    @GetMapping("analisaPost/{idPost}/{idPessoa}")
+    public boolean analisaPost(@PathVariable Integer idPost, @PathVariable Integer idPessoa){
+        return postService.analisaPost(idPost, idPessoa);
+    }
+
     @GetMapping("curtir/{idPessoaCurtiu}/{idPostCurtido}")
     public Post curtir(@PathVariable Integer idPessoaCurtiu, @PathVariable Integer idPostCurtido){
         return postService.curtir(idPessoaCurtiu, idPostCurtido);

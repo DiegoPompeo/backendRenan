@@ -83,4 +83,12 @@ public class PostService {
 
         return post;
     }
+
+    public boolean analisaPost(Integer idPost, Integer idPessoa){
+        if (postRepository.findById(idPost).get() == null ||
+                pessoaRepository.findById(idPessoa).get() == null){
+            return false;
+        }
+        return pessoaRepository.findById(idPessoa).get().getPostsCurtidos().contains(idPost);
+    }
 }
