@@ -26,4 +26,6 @@ public class Arquivo {
 
     @Lob
     private byte[] file;
+
+    private String type;
 }
