@@ -4,7 +4,6 @@ import com.redesocial.ppads.entity.Artigo;
 import com.redesocial.ppads.service.ArtigoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
