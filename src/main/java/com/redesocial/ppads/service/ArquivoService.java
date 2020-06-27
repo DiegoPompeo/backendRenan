@@ -29,6 +29,6 @@ public class ArquivoService {
     }
 
     public List findAll() {
-        return (List) arquivoRepository.findAll();
+        return arquivoRepository.findAll();
     }
 }
