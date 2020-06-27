@@ -29,4 +29,8 @@ public class ArquivoController {
         return new ResponseEntity(arquivoService.getDocumentFile(id), httpHeaders, HttpStatus.OK);
     }
 
+    @GetMapping("lista")
+    public @ResponseBody List getDocument() {
+        return arquivoService.findAll();
+    }
 }
