@@ -41,4 +41,12 @@ public class ArquivoService {
     public Arquivo findArquivoById(Integer idArquivo) {
         return arquivoRepository.findById(idArquivo).get();
     }
+
+    public void delete(Integer id){
+        arquivoRepository.deleteById(id);
+    }
+
+    public void deleteAll(){
+        arquivoRepository.deleteAll();
+    }
 }

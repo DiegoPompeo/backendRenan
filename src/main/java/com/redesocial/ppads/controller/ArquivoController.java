@@ -27,7 +27,7 @@ public class ArquivoController {
         return arquivoService.findAll();
     }
 
-    @GetMapping("listarPorArtigo/{artigoId}")
+    @GetMapping("FiPorArtigo/{artigoId}")
     public Arquivo findAllByIdArtigo(@PathVariable Integer artigoId){
         return arquivoService.findFileByIdArtigo(artigoId);
     }
@@ -35,5 +35,15 @@ public class ArquivoController {
     @GetMapping("arquivo/{idArquivo}")
     public Arquivo findArquivoById(@PathVariable Integer idArquivo){
         return arquivoService.findArquivoById(idArquivo);
+    }
+
+    @DeleteMapping("removeAll")
+    public void delete(){
+        arquivoService.deleteAll();
+    }
+
+    @DeleteMapping("removePorId/{id}")
+    public void deletePorId(@PathVariable Integer id){
+        arquivoService.delete(id);
     }
 }
