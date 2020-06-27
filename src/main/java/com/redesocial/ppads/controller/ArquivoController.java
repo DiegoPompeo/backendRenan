@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -21,5 +22,18 @@ public class ArquivoController {
         return arquivoService.save(file, id);
     }
 
+    @GetMapping("listaFile")
+    public List<Arquivo> findAll(){
+        return arquivoService.findAll();
+    }
 
+    @GetMapping("listarPorArtigo/{idArtigo}")
+    public List<Arquivo> findAllByIdArtigo(@PathVariable Integer idArtigo){
+        return arquivoService.findByIdArtigo(idArtigo);
+    }
+
+    @GetMapping("arquivo/{idArquivo}")
+    public Arquivo findArquivoById(@PathVariable Integer idArquivo){
+        return arquivoService.findArquivoById(idArquivo);
+    }
 }

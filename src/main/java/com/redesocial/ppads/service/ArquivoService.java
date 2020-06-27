@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class ArquivoService {
@@ -21,5 +22,17 @@ public class ArquivoService {
         arquivo.setType(file.getContentType());
 
         return arquivoRepository.save(arquivo);
+    }
+
+    public List<Arquivo> findAll() {
+        return arquivoRepository.findAll();
+    }
+
+    public List<Arquivo> findByIdArtigo(Integer artigoId) {
+        return arquivoRepository.findByArtigoId(artigoId);
+    }
+
+    public Arquivo findArquivoById(Integer idArquivo) {
+        return arquivoRepository.findById(idArquivo).get();
     }
 }
