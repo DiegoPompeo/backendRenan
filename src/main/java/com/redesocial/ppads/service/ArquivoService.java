@@ -28,7 +28,7 @@ public class ArquivoService {
         return arquivoRepository.findAll();
     }
 
-    public List<Arquivo> findByIdArtigo(Integer artigoId) {
+    public Arquivo findFileByIdArtigo(Integer artigoId) {
         return arquivoRepository.findByArtigoId(artigoId);
     }
 

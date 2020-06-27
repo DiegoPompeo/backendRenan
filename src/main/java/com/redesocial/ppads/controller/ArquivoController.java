@@ -28,8 +28,8 @@ public class ArquivoController {
     }
 
     @GetMapping("listarPorArtigo/{idArtigo}")
-    public List<Arquivo> findAllByIdArtigo(@PathVariable Integer idArtigo){
-        return arquivoService.findByIdArtigo(idArtigo);
+    public Arquivo findAllByIdArtigo(@PathVariable Integer idArtigo){
+        return arquivoService.findFileByIdArtigo(idArtigo);
     }
 
     @GetMapping("arquivo/{idArquivo}")
