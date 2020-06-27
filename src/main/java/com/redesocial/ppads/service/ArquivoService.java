@@ -16,7 +16,7 @@ public class ArquivoService {
 
     public Arquivo save(MultipartFile file, Integer idArtigo) throws IOException {
         Arquivo arquivo = new Arquivo();
-        arquivo.setArtigoId(idArtigo);
+        arquivo.setNroArtigo(idArtigo);
         arquivo.setDocName(file.getOriginalFilename());
         arquivo.setFile(file.getBytes());
         arquivo.setType(file.getContentType());
@@ -29,7 +29,7 @@ public class ArquivoService {
     }
 
     public Arquivo findFileByIdArtigo(Integer artigoId) {
-        return arquivoRepository.findByArtigoId(artigoId);
+        return arquivoRepository.findByNroArtigo(artigoId);
     }
 
     public Arquivo findArquivoById(Integer idArquivo) {

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ArquivoRepository extends JpaRepository<Arquivo, Integer> {
-    Arquivo findByArtigoId(Integer artigoId);
+    Arquivo findByNroArtigo(Integer nroArtigo);
 }

@@ -20,7 +20,7 @@ public class Arquivo {
     @GenericGenerator(name = "increment", strategy = "increment")
     private Integer id;
 
-    private Integer artigoId;
+    private Integer nroArtigo;
 
     private String docName;
 
