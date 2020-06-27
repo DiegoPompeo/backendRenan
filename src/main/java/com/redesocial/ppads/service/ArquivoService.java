@@ -29,7 +29,13 @@ public class ArquivoService {
     }
 
     public Arquivo findFileByIdArtigo(Integer artigoId) {
-        return arquivoRepository.findByNroArtigo(artigoId);
+        List<Arquivo> lista = arquivoRepository.findAll();
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getNroArtigo().equals(artigoId)){
+                return arquivoRepository.findById(lista.get(i).getId()).get();
+            }
+        }
+        return null;
     }
 
     public Arquivo findArquivoById(Integer idArquivo) {
