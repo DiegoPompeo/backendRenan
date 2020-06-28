@@ -2,6 +2,7 @@ package com.redesocial.ppads.service;
 
 import com.redesocial.ppads.entity.Pessoa;
 import com.redesocial.ppads.entity.Post;
+import com.redesocial.ppads.model.Notificacao;
 import com.redesocial.ppads.repository.PessoaRepository;
 import com.redesocial.ppads.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,22 @@ public class PostService {
     private PessoaRepository pessoaRepository;
 
     public Post create(Post post){
-        return postRepository.save(post);
+        Pessoa pessoa = pessoaRepository.findByEmail(post.getEmailAutor());
+        List<Integer> seguidores = pessoa.getSeguidores();
+        Post postSalvo = postRepository.save(post);
+
+        for (int i = 0; i < seguidores.size(); i++) {
+            Notificacao notificacao = new Notificacao();
+            Pessoa aux = pessoaRepository.findById(seguidores.get(i)).get();
+
+            notificacao.setIdPublicacao(postSalvo.getId());
+            notificacao.setVisualizacao(false);
+            aux.getListaDeNotificacao().add(notificacao);
+
+            pessoaRepository.save(aux);
+        }
+
+        return postSalvo;
     }
 
     public List<Post> readAll() {
