@@ -10,4 +10,6 @@ public class Notificacao {
     private Integer idPublicacao;
     private boolean visualizacao;
     private String tipoPublicacao;
+    private String autor;
+    private String titulo;
 }

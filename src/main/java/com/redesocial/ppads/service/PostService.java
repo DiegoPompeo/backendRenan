@@ -30,6 +30,9 @@ public class PostService {
             notificacao.setIdPublicacao(postSalvo.getId());
             notificacao.setVisualizacao(false);
             notificacao.setTipoPublicacao("Post");
+            notificacao.setAutor(pessoa.getInfos().getNomePessoa());
+            notificacao.setTitulo(post.getTxt().substring(0,10) + "...");
+
             aux.getListaDeNotificacao().add(notificacao);
 
             pessoaRepository.save(aux);
