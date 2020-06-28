@@ -28,6 +28,7 @@ public class ArtigoService {
 
             notificacao.setIdPublicacao(artigoSalvo.getId());
             notificacao.setVisualizacao(false);
+            notificacao.setTipoPublicacao("Artigo");
             aux.getListaDeNotificacao().add(notificacao);
 
             pessoaRepository.save(aux);

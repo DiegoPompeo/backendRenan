@@ -9,4 +9,5 @@ import javax.persistence.Embeddable;
 public class Notificacao {
     private Integer idPublicacao;
     private boolean visualizacao;
+    private String tipoPublicacao;
 }
