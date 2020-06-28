@@ -1,6 +1,7 @@
 package com.redesocial.ppads.service;
 
 import com.redesocial.ppads.entity.Pessoa;
+import com.redesocial.ppads.model.Notificacao;
 import com.redesocial.ppads.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -138,5 +139,9 @@ public class PessoaService {
         }
 
         return lista;
+    }
+
+    public List<Notificacao> getAllNotificacao(String email) {
+        return pessoaRepository.findByEmail(email).getListaDeNotificacao();
     }
 }
