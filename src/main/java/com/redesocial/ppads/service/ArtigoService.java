@@ -1,7 +1,10 @@
 package com.redesocial.ppads.service;
 
 import com.redesocial.ppads.entity.Artigo;
+import com.redesocial.ppads.entity.Pessoa;
+import com.redesocial.ppads.model.Notificacao;
 import com.redesocial.ppads.repository.ArtigoRepository;
+import com.redesocial.ppads.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -11,8 +14,25 @@ public class ArtigoService {
     @Autowired
     private ArtigoRepository artigoRepository;
 
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
     public Artigo create(Artigo artigo){
-        return artigoRepository.save(artigo);
+        Pessoa pessoa = pessoaRepository.findByEmail(artigo.getEmailAutor());
+        List<Integer> seguidores = pessoa.getSeguidores();
+        Artigo artigoSalvo = artigoRepository.save(artigo);
+
+        for (int i = 0; i < seguidores.size(); i++) {
+            Notificacao notificacao = new Notificacao();
+            Pessoa aux = pessoaRepository.findById(seguidores.get(i)).get();
+
+            notificacao.setIdPublicacao(artigoSalvo.getId());
+            notificacao.setVisualizacao(false);
+            aux.getListaDeNotificacao().add(notificacao);
+
+            pessoaRepository.save(aux);
+        }
+        return artigoSalvo;
     }
 
     public List<Artigo> readAllByEmailAutor(String emailAutor){
