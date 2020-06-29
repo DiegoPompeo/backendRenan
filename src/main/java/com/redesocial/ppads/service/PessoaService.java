@@ -64,6 +64,7 @@ public class PessoaService {
             p.setInfos(pessoa.getInfos());
             p.setInteresses(pessoa.getInteresses());
             p.setTrabalho(pessoa.getTrabalho());
+
             return pessoaRepository.save(p);
         }
         return null;

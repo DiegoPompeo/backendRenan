@@ -31,7 +31,7 @@ public class PostService {
             notificacao.setVisualizacao(false);
             notificacao.setTipoPublicacao("Post");
             notificacao.setAutor(pessoa.getInfos().getNomePessoa());
-            notificacao.setTitulo(post.getTxt().substring(0,16) + "...");
+            notificacao.setTitulo(post.getTxt() + "...");
 
             aux.getListaDeNotificacao().add(notificacao);
 

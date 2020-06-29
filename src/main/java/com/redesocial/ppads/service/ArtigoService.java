@@ -31,7 +31,7 @@ public class ArtigoService {
             notificacao.setVisualizacao(false);
             notificacao.setTipoPublicacao("Artigo");
             notificacao.setAutor(pessoa.getInfos().getNomePessoa());
-            notificacao.setTitulo(artigo.getPublicacao().getTitulo().substring(0,16) + "...");
+            notificacao.setTitulo(artigo.getPublicacao().getTitulo() + "...");
 
             aux.getListaDeNotificacao().add(notificacao);
 
