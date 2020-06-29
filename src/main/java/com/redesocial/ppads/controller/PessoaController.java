@@ -82,6 +82,4 @@ public class PessoaController {
     public List<Notificacao> getAllNotificacao(@PathVariable String email) {
         return pessoaService.getAllNotificacao(email);
     }
-
-
 }

@@ -2,6 +2,7 @@ package com.redesocial.ppads.service;
 
 import com.redesocial.ppads.entity.Artigo;
 import com.redesocial.ppads.entity.Pessoa;
+import com.redesocial.ppads.entity.Post;
 import com.redesocial.ppads.model.Notificacao;
 import com.redesocial.ppads.repository.ArtigoRepository;
 import com.redesocial.ppads.repository.PessoaRepository;
@@ -66,4 +67,41 @@ public class ArtigoService {
     }
 
 
+    public boolean analisaArtigo(Integer idArtigo, Integer idPessoa) {
+        if (artigoRepository.findById(idArtigo).get() == null ||
+                pessoaRepository.findById(idPessoa).get() == null){
+            return false;
+        }
+        return pessoaRepository.findById(idPessoa).get().getArtigosCurtidos().contains(idArtigo);
+    }
+
+    public Artigo curtir(Integer idPessoaCurtiu, Integer idArtigoCurtido) {
+        Pessoa pessoa = pessoaRepository.findById(idPessoaCurtiu).get();
+        Artigo artigo = artigoRepository.findById(idArtigoCurtido).get();
+
+        pessoa.getArtigosCurtidos().add(idArtigoCurtido);
+
+        artigo.getMembrosCurtiram().add(idPessoaCurtiu);
+        artigo.setCurtidas(artigo.getCurtidas() + 1);
+
+        artigoRepository.save(artigo);
+        pessoaRepository.save(pessoa);
+
+        return artigo;
+    }
+
+    public Artigo undoCurtir(Integer idPessoaCurtiu, Integer idArtigoCurtido) {
+        Pessoa pessoa = pessoaRepository.findById(idPessoaCurtiu).get();
+        Artigo artigo = artigoRepository.findById(idArtigoCurtido).get();
+
+        pessoa.getArtigosCurtidos().remove(idArtigoCurtido);
+
+        artigo.getMembrosCurtiram().remove(idPessoaCurtiu);
+        artigo.setCurtidas(artigo.getCurtidas() - 1);
+
+        artigoRepository.save(artigo);
+        pessoaRepository.save(pessoa);
+
+        return artigo;
+    }
 }

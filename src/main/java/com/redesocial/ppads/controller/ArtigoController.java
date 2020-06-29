@@ -1,6 +1,7 @@
 package com.redesocial.ppads.controller;
 
 import com.redesocial.ppads.entity.Artigo;
+import com.redesocial.ppads.entity.Post;
 import com.redesocial.ppads.service.ArtigoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,21 @@ public class ArtigoController {
     @DeleteMapping("deletaArtigo/{idArtigo}")
     public boolean deletaArtigo(@PathVariable Integer idArtigo){
         return artigoService.delete(idArtigo);
+    }
+
+    @GetMapping("analisaArtigo/{idArtigo}/{idPessoa}")
+    public boolean analisaPost(@PathVariable Integer idArtigo, @PathVariable Integer idPessoa){
+        return artigoService.analisaArtigo(idArtigo, idPessoa);
+    }
+
+    @GetMapping("curtir/{idPessoaCurtiu}/{idPostCurtido}")
+    public Artigo curtir(@PathVariable Integer idPessoaCurtiu, @PathVariable Integer idArtigoCurtido){
+        return artigoService.curtir(idPessoaCurtiu, idArtigoCurtido);
+    }
+
+    @GetMapping("undoCurtir/{idPessoaCurtiu}/{idPostCurtido}")
+    public Artigo undoCurtir(@PathVariable Integer idPessoaCurtiu, @PathVariable Integer idArtigoCurtido){
+        return artigoService.undoCurtir(idPessoaCurtiu, idArtigoCurtido);
     }
 
 }
