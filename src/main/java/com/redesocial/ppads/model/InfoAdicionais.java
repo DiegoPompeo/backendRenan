@@ -11,4 +11,5 @@ public class InfoAdicionais {
     private String dataNascimento;
     private String dataInicioCientista;
     private String cpf;
+    private String rg;
 }
