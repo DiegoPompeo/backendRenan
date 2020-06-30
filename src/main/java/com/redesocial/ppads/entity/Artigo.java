@@ -26,7 +26,7 @@ public class Artigo {
     private Integer curtidas;
 
     @ElementCollection
-    @CollectionTable(name="curtiram", joinColumns=@JoinColumn(name="curtiram_id"))
+    @CollectionTable(name="curtiramArtigo", joinColumns=@JoinColumn(name="curtiram_id"))
     @Column(name="id_curtiram")
     private List<Integer> membrosCurtiram;
 
