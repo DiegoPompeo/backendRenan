@@ -8,6 +8,7 @@ import javax.persistence.Embeddable;
 @Data
 public class Publicacao {
     private String titulo;
+    private String resumo;
     private String localDaPublicacao;
     private String anoDaPublicacao;
     private String url;
