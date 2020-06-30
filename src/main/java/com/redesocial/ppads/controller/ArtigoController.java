@@ -44,7 +44,7 @@ public class ArtigoController {
         return artigoService.analisaArtigo(idArtigo, idPessoa);
     }
 
-    @GetMapping("curtir/{idPessoaCurtiu}/{idPostCurtido}")
+    @GetMapping("curtir/{idPessoaCurtiu}/{idArtigoCurtido}")
     public Artigo curtir(@PathVariable Integer idPessoaCurtiu, @PathVariable Integer idArtigoCurtido){
         return artigoService.curtir(idPessoaCurtiu, idArtigoCurtido);
     }
