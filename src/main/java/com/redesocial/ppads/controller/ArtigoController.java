@@ -24,6 +24,11 @@ public class ArtigoController {
         return artigoService.readAllByEmailAutor(emailAutor);
     }
 
+    @GetMapping("listaTodos")
+    public List<Artigo> listaAll(){
+        return artigoService.readAll();
+    }
+
     @GetMapping("procuraArtigoPorId/{idArtigo}")
     public Artigo procuraArtigoPorId(@PathVariable Integer idArtigo){
         return artigoService.readById(idArtigo);

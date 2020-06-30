@@ -104,4 +104,8 @@ public class ArtigoService {
 
         return artigo;
     }
+
+    public List<Artigo> readAll() {
+        return artigoRepository.findAll();
+    }
 }
